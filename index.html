@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- UI Overlay for Car Status -->
+    <div id="ui-overlay">
+        <div class="status-bar">Gas: <span id="gas-level">100</span>%</div>
+        <div class="status-bar">Cleanliness: <span id="clean-level">100</span>%</div>
+    </div>
+
+    <!-- Car Wash Modal -->
+    <div id="car-wash-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🧼 Car Wash 🧼</h2>
+            <p>Welcome to the Car Wash!</p>
+            <button onclick="washInside()">Wash Inside</button>
+            <button onclick="washOutside()">Wash Outside</button>
+            <button class="close-btn" onclick="closeModal('car-wash-modal')">Leave</button>
+        </div>
+    </div>
+
+    <!-- Service Station Modal -->
+    <div id="service-station-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>⛽ Service Station 🔧</h2>
+            <p>What do you need?</p>
+            <button onclick="fillGas()">Gasoline Refill</button>
+            <button onclick="checkTires()">Tire Air Pressure</button>
+            <button onclick="upgradeWheels()">Wheel Upgrades</button>
+            <div class="paint-section">
+                <p>Paint Car:</p>
+                <input type="color" id="car-color-picker" value="#ff0000">
+                <button onclick="paintCar()">Apply Paint</button>
+            </div>
+            <button class="close-btn" onclick="closeModal('service-station-modal')">Leave</button>
+        </div>
+    </div>
+
+    <!-- Message Overlay -->
+    <div id="message-overlay" class="hidden">
+        <h2 id="message-text"></h2>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
