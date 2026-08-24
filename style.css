@@ -1,0 +1,156 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+    background-color: #87CEEB; /* Sky blue */
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+canvas {
+    background-color: #4CAF50; /* Grass green */
+}
+
+/* UI Overlay */
+#ui-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    border: 4px solid #333;
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+.status-bar {
+    margin-bottom: 10px;
+}
+.status-bar:last-child {
+    margin-bottom: 0;
+}
+
+/* Modals */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 8px solid #ff9800;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    font-size: 36px;
+    margin-top: 0;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 24px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0 5px 0 #388E3C;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:active {
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 #388E3C;
+}
+
+button.close-btn {
+    background-color: #f44336;
+    box-shadow: 0 5px 0 #d32f2f;
+    display: block;
+    margin: 20px auto 0 auto;
+}
+
+button.close-btn:active {
+    box-shadow: 0 0px 0 #d32f2f;
+}
+
+.paint-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+#car-color-picker {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+/* Message Overlay */
+#message-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 235, 59, 0.95);
+    padding: 20px 40px;
+    border-radius: 20px;
+    border: 5px solid #ff9800;
+    z-index: 20;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    pointer-events: none;
+}
+
+#message-overlay.hidden {
+    display: none;
+}
+
+#message-text {
+    font-size: 32px;
+    margin: 0;
+    color: #333;
+}
