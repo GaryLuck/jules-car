@@ -26,11 +26,15 @@ const keys = {
 };
 
 window.addEventListener('keydown', (e) => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+    let key = e.key;
+    if (key.length === 1) key = key.toLowerCase();
+    if (keys.hasOwnProperty(key)) keys[key] = true;
 });
 
 window.addEventListener('keyup', (e) => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+    let key = e.key;
+    if (key.length === 1) key = key.toLowerCase();
+    if (keys.hasOwnProperty(key)) keys[key] = false;
 });
 
 // --- Car Class ---
@@ -61,6 +65,17 @@ class Car {
             return;
         }
 
+        // Turning (Allow turning even if stopped, like spinning tires/steering wheel)
+        // Reversing the direction of rotation if driving backwards is a common convention
+        const direction = this.speed < 0 ? -1 : 1;
+
+        if (keys.ArrowLeft || keys.a) {
+            this.angle -= this.turnSpeed * direction;
+        }
+        if (keys.ArrowRight || keys.d) {
+            this.angle += this.turnSpeed * direction;
+        }
+
         // Acceleration
         const isAccelerating = keys.ArrowUp || keys.w;
         const isReversing = keys.ArrowDown || keys.s;
@@ -82,17 +97,6 @@ class Car {
         // Cap speed
         if (this.speed > this.maxSpeed) this.speed = this.maxSpeed;
         if (this.speed < -this.maxSpeed / 2) this.speed = -this.maxSpeed / 2;
-
-        // Turning
-        if (this.speed !== 0) {
-            const flip = this.speed > 0 ? 1 : -1;
-            if (keys.ArrowLeft || keys.a) {
-                this.angle -= this.turnSpeed * flip * (Math.abs(this.speed)/this.maxSpeed);
-            }
-            if (keys.ArrowRight || keys.d) {
-                this.angle += this.turnSpeed * flip * (Math.abs(this.speed)/this.maxSpeed);
-            }
-        }
 
         // Update position
         this.x += Math.cos(this.angle) * this.speed;
@@ -430,6 +434,9 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
+
+    // Center the camera on the player's car
+    ctx.translate(canvas.width / 2 - playerCar.x, canvas.height / 2 - playerCar.y);
 
     drawMap();
 
